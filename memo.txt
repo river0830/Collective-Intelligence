@@ -1,3 +1,4 @@
 http://blog.csdn.net/hitlion2008/article/details/9285785
 http://codingbat.com/python
 http://www.openbookproject.net/py4fun/
+http://www.cnblogs.com/kaituorensheng/p/3287652.html

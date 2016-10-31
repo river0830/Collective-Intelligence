@@ -6,7 +6,7 @@ import os, re, datetime
 file_name = 'output_1983.06.10.data'
 if os.path.exists(file_name) == False:
     print('{0} not exist!'.format(file_name))
-    open(file_name, 'w')
+    f = open(file_name, 'w')
 
 try:
     m = re.search('output_(?P<year>\d{4})\.(?P<mon>\d{2})\.(?P<day>\d{2})\.', file_name)
@@ -28,5 +28,10 @@ print('file_other is {0}'.format(file_other))
 
 if os.path.exists(file_other) == False:
     os.rename(file_name, file_other)
+
+if f:
+    print("close file")
+    f.close()
+    os.remove(file_other)
     
     

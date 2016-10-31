@@ -7,4 +7,8 @@ critics = {'Lisa Rose' : {'Lady in the Water' : 2.5, 'Snake on a Plane' : 3.5, '
            'Toby': {'Snake on a Plane' : 4.5, 'You, Me and Dupree' : 1.0, 'Superman Returns' : 4.0}}
 
 if __name__ == '__main__':
-    print critics
+    import os
+    
+    print(critics)
+    raw_input()
+    #os.system('pause')

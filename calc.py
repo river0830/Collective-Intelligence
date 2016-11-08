@@ -1,5 +1,7 @@
 ﻿#coding:utf-8
 from Tkinter import *  
+import ctypes
+import sys
   
 #创建横条型框架  
 def frame(root, side):  
@@ -14,6 +16,12 @@ def button(root, side, text, command = None):
 #继承了Frame类，初始化程序界面的布局  
 class Calculator(Frame):  
     def __init__(self, master = None):
+        if sys.platform[:3] == 'win':
+            whnd = ctypes.windll.kernel32.GetConsoleWindow()
+            if whnd != 0:
+                ctypes.windll.user32.ShowWindow(whnd, 0)
+                ctypes.windll.kernel32.CloseHandle(whnd)
+        
         Frame.__init__(self, master)
           
         self.pack(expand = YES, fill = BOTH)

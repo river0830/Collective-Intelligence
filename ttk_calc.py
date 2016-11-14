@@ -2,6 +2,7 @@
 import Tkinter as tk
 #from tkinter.ttk import *
 import ttk
+import ast
 
 def frame(master):
     """将共同的属性作为默认值, 以简化Frame创建过程"""
@@ -26,9 +27,9 @@ def calc(text):
     """用eval方法计算表达式字符串"""
     try:
         if (sep_flag.get() == 0):
-            return eval(del_sep(text))
+            return ast.literal_eval(del_sep(text))
         else:
-            return add_sep(str(eval(del_sep(text))))
+            return add_sep(str(ast.literal_eval(del_sep(text))))
     except (SyntaxError, ZeroDivisionError, NameError):
         return 'Error'
 

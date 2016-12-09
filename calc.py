@@ -2,6 +2,7 @@
 from Tkinter import *  
 import ctypes
 import sys
+import ast
   
 #创建横条型框架  
 def frame(root, side):  
@@ -53,7 +54,7 @@ class Calculator(Frame):
     #调用eval函数计算表达式的值  
     def calc(self, display):  
         try:  
-            display.set(eval(display.get()))  
+            display.set(ast.literal_eval(display.get()))
         except:  
             display.set("ERROR")  
 #程序的入口  

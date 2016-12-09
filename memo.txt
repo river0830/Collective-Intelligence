@@ -7,3 +7,10 @@ http://www.open-open.com/lib/view/open1413527388231.html
 
 http://blog.sina.com.cn/s/blog_6296cebc0100f8ev.html
 http://teacherlink.org/content/math/interactive/probability/interactivequiz/question1/home.html
+
+http://blog.csdn.net/u010180339/article/category/1385245
+
+celery task queue
+duck typing
+" When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck."
+" In other words, don't check whether it IS-a duck: check whether it QUACKS-like-a duck, WALKS-like-a duck, etc, etc, depending on exactly what subset of duck-like behaviour you need to play your language-games with"

@@ -6,7 +6,8 @@ import os, re, datetime
 file_name = 'output_1983.06.10.data'
 if os.path.exists(file_name) == False:
     print('{0} not exist!'.format(file_name))
-    f = open(file_name, 'w')
+
+f = open(file_name, 'w')
 
 try:
     m = re.search('output_(?P<year>\d{4})\.(?P<mon>\d{2})\.(?P<day>\d{2})\.', file_name)

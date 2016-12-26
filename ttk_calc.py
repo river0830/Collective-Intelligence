@@ -25,11 +25,12 @@ def back(text):
     
 def calc(text):
     """用eval方法计算表达式字符串"""
+    print("calc string is: {0}".format(text))
     try:
         if (sep_flag.get() == 0):
-            return ast.literal_eval(del_sep(text))
+            return eval(del_sep(text))
         else:
-            return add_sep(str(ast.literal_eval(del_sep(text))))
+            return add_sep(str(eval(del_sep(text))))
     except (SyntaxError, ZeroDivisionError, NameError):
         return 'Error'
 

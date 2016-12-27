@@ -9,6 +9,10 @@ http://blog.sina.com.cn/s/blog_6296cebc0100f8ev.html
 http://teacherlink.org/content/math/interactive/probability/interactivequiz/question1/home.html
 
 http://blog.csdn.net/u010180339/article/category/1385245
+//pyQt
+http://www.cnblogs.com/hhh5460/p/5170251.html
+
+//Anaconda 4.2.0
 
 celery task queue
 duck typing

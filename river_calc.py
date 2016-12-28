@@ -15,6 +15,7 @@ history:
 '''
 
 import Tkinter as tk
+import tkMessageBox as tkbox
 import operator, math
 import sys
 
@@ -36,13 +37,15 @@ class Calc(tk.Frame):
 	def __init__(self, master = None):
 		tk.Frame.__init__(self, master)
 
-		self.master.title("RIVER 计算器")
-		self.master.geometry("320x320")
-		#窗口不可拉伸
-		self.master.resizable(width=False, height=False)
-
+		self.create_ctrl(master)
 		#create_memu
 		self.create_menu(master);
+
+	def create_ctrl(self, master):
+		master.title("RIVER 计算器")
+		master.geometry("320x320")
+		# 窗口不可拉伸
+		master.resizable(width=False, height=False)
 
 		self.display = tk.StringVar
 
@@ -50,15 +53,20 @@ class Calc(tk.Frame):
 		menubar = tk.Menu(master)
 
 		editmenu = tk.Menu(menubar, tearoff = 0)
-		editmenu.add_command(label = '复制 Ctrl+C',
+		editmenu.add_command(label = '复制 Ctrl+C', accelerator = "ctrl + c",
 							 command = lambda x = self.display : self.clip_write(x.get()))
-		editmenu.add_command(label = '剪切 Ctrl+X',
+		editmenu.add_command(label = '剪切 Ctrl+X', accelerator = "ctrl + x",
 							 command = lambda x = self.display : self.clip_xcopy(x.get()))
 		editmenu.add_separator()
-		editmenu.add_command(label = '粘帖 Ctrl+V',
+		editmenu.add_command(label = '粘帖 Ctrl+V', accelerator = "ctrl + v",
 							 command = lambda x = self.display : x.set(self.clib_get()))
 
+		aboutmenu = tk.Menu(menubar, tearoff = 0)
+		aboutmenu.add_command(label = '关于', command = self.about())
+
 		menubar.add_cascade(label = '编辑', menu = editmenu)
+		menubar.add_cascade(label = '关于', menu = aboutmenu)
+		master.config(menu = menubar)
 
 	def calc(self):
 		try:
@@ -68,6 +76,9 @@ class Calc(tk.Frame):
 
 	def my_eval(self, str):
 		return eval(str, {'__builtins__':None}, safe_dict)
+
+	def about(self):
+		tkbox.showinfo('river')
 
 	def clip_xcopy(self, str):
 		self.display.set("")

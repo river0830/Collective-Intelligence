@@ -37,9 +37,11 @@ class Calc(tk.Frame):
 	def __init__(self, master = None):
 		tk.Frame.__init__(self, master)
 
+		self.root = master
+
 		self.create_ctrl(master)
 		#create_memu
-		self.create_menu(master);
+		self.create_menu(master)
 
 	def create_ctrl(self, master):
 		master.title("RIVER 计算器")
@@ -53,16 +55,16 @@ class Calc(tk.Frame):
 		menubar = tk.Menu(master)
 
 		editmenu = tk.Menu(menubar, tearoff = 0)
-		editmenu.add_command(label = '复制 Ctrl+C', accelerator = "ctrl + c",
+		editmenu.add_command(label = '复制', accelerator = "ctrl + c",
 							 command = lambda x = self.display : self.clip_write(x.get()))
-		editmenu.add_command(label = '剪切 Ctrl+X', accelerator = "ctrl + x",
+		editmenu.add_command(label = '剪切', accelerator = "ctrl + x",
 							 command = lambda x = self.display : self.clip_xcopy(x.get()))
 		editmenu.add_separator()
-		editmenu.add_command(label = '粘帖 Ctrl+V', accelerator = "ctrl + v",
+		editmenu.add_command(label = '粘帖', accelerator = "ctrl + v",
 							 command = lambda x = self.display : x.set(self.clib_get()))
 
 		aboutmenu = tk.Menu(menubar, tearoff = 0)
-		aboutmenu.add_command(label = '关于', command = self.about())
+		aboutmenu.add_command(label = '关于', command = lambda : self.about())
 
 		menubar.add_cascade(label = '编辑', menu = editmenu)
 		menubar.add_cascade(label = '关于', menu = aboutmenu)
@@ -78,7 +80,7 @@ class Calc(tk.Frame):
 		return eval(str, {'__builtins__':None}, safe_dict)
 
 	def about(self):
-		tkbox.showinfo('river')
+		tkbox.showinfo('calc', "river's calculator")
 
 	def clip_xcopy(self, str):
 		self.display.set("")

@@ -4,7 +4,7 @@ this is the fisrt python example by river.
 
 interface design:
 编辑  关于
-backspace clear +/- 1/x
++/- 1/x clear backspace
 7  8  9  +  //
 4  5  6  -  %
 1  2  3  *  pow
@@ -48,20 +48,35 @@ class Calc(tk.Frame):
 		master.geometry("320x320")
 		# 窗口不可拉伸
 		master.resizable(width=False, height=False)
+		master.columnconfigure(0, weight=1)
+		#master.rowconfigure(0, weight=1)
 
-		self.display = tk.StringVar
+		self.display = tk.StringVar()
+		tk.Entry(master, relief = tk.SUNKEN, textvariable = self.display)\
+			.grid(row = 0, column = 0, columnspan = 5, sticky = 'nesw')
+
+		tk.Button(master, text='±', command =
+		lambda x=self.display : x.set('-('+x.get()+')')).grid(row = 1, column = 0)
+		tk.Button(master, text='1/x', command=
+		lambda x=self.display: x.set(self.my_eval('1.0/' + x.get()))).grid(row=1, column=1)
+		tk.Button(master, text='C', command=
+		lambda x=self.display: x.set('')).grid(row=1, column=2)
+		tk.Button(master, text='Back', command=
+		lambda x=self.display: x.set(self.backspace(x.get()))).grid(row=1, column=3, columnspan=2, sticky = 'nesw')
 
 	def create_menu(self, master):
 		menubar = tk.Menu(master)
 
 		editmenu = tk.Menu(menubar, tearoff = 0)
 		editmenu.add_command(label = '复制', accelerator = "ctrl + c",
-							 command = lambda x = self.display : self.clip_write(x.get()))
+		command = lambda x = self.display : self.clip_write(x.get()))
+
 		editmenu.add_command(label = '剪切', accelerator = "ctrl + x",
-							 command = lambda x = self.display : self.clip_xcopy(x.get()))
+		command = lambda x = self.display : self.clip_xcopy(x.get()))
+
 		editmenu.add_separator()
 		editmenu.add_command(label = '粘帖', accelerator = "ctrl + v",
-							 command = lambda x = self.display : x.set(self.clib_get()))
+		command = lambda x = self.display : x.set(self.clib_get()))
 
 		aboutmenu = tk.Menu(menubar, tearoff = 0)
 		aboutmenu.add_command(label = '关于', command = lambda : self.about())
@@ -77,7 +92,10 @@ class Calc(tk.Frame):
 			self.display.set("Error")
 
 	def my_eval(self, str):
-		return eval(str, {'__builtins__':None}, safe_dict)
+		try:
+			return eval(str, {'__builtins__':None}, safe_dict)
+		except:
+			return 'Error'
 
 	def about(self):
 		tkbox.showinfo('calc', "river's calculator")
@@ -97,6 +115,12 @@ class Calc(tk.Frame):
 		str = wclip.GetClipboardData(win32con.CF_TEXT)
 		wclip.CloseClipboard()
 		return str
+
+	def backspace(self, str):
+		if(len(str) > 0):
+			return str[:-1]
+		else:
+			return str
 
 if __name__ == '__main__':
 	root = tk.Tk()

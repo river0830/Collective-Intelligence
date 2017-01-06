@@ -49,47 +49,58 @@ class Calc(tk.Frame):
 			pass
 
 	def create_ctrl(self, master):
-		master.title("计算器(Grid)")
+		master.title("计算器(Pack)")
 		#master.geometry("320x320")
 		# 窗口不可拉伸
 		master.resizable(width=False, height=False)
-		#master.columnconfigure(0, weight=1)
-		#master.rowconfigure(0, weight=1)
 
 		self.entry = tk.StringVar()
 		tk.Entry(master, relief=tk.SUNKEN, textvariable=self.entry)\
-			.grid(row=0, column=0, columnspan=5, sticky='nesw')
+			.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH, padx=1, pady=1)
 		#± 1/x Clear Backspace
-		self.create_buttons('±',
-							lambda x=self.entry : x.set('-('+x.get()+')'), 2, 0)
-		self.create_buttons('1/x',
-							lambda x=self.entry : self.calc('1.0/'+x.get()), 2, 1)
-		self.create_buttons('Clear',
-							 lambda x=self.entry : x.set(''), 2, 2)
-		self.create_buttons('Backspace',
-							lambda x=self.entry : x.set(self.back(x.get())), 2, 3, 2)
+		fram1 = tk.Frame(master)
+		fram1.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH)
+		#self.create_buttons(fram1, '', 0, 6, tk.SUNKEN)
+		self.create_buttons(fram1, '±',
+							lambda x=self.entry : x.set('-('+x.get()+')'))
+		self.create_buttons(fram1, '1/x',
+							lambda x=self.entry : self.calc('1.0/'+x.get()))
+		self.create_buttons(fram1, 'Clear',
+							lambda x=self.entry : x.set(''))
+		self.create_buttons(fram1, 'Backspace',
+							lambda x=self.entry : x.set(self.back(x.get())), 14)
 
-		rw = 3
-		for key in ('789+', '456-', '123*', '0.%/'):
-			col = 0
-			for c in key:
-				self.create_buttons(c,
-				                    lambda x=self.entry, c=c : x.set(x.get()+c), rw, col)
-				col += 1
-			rw += 1
+		fram2 = tk.Frame(master)
+		fram2.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH)
+		for c in '789+':
+			self.create_buttons(fram2, c, lambda x=self.entry, c=c : x.set(x.get()+c))
+		self.create_buttons(fram2, '=',
+		                    lambda x=self.entry : self.calc(x.get()))
 
-		self.create_buttons('=',
-		                    lambda x=self.entry : self.calc(x.get()), 3, 4)
-		self.create_buttons('//',
-		                    lambda x=self.entry : x.set(x.get()+'//'), 4, 4)
-		self.create_buttons('log10',
-		                    lambda x=self.entry : self.calc('log10(' + x.get() + ')'), 5, 4)
-		self.create_buttons('sqrt',
-		                    lambda x=self.entry: self.calc('sqrt(' + x.get() + ')'), 6, 4)
+		fram3 = tk.Frame(master)
+		fram3.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH)
+		for c in '456-':
+			self.create_buttons(fram3, c, lambda x=self.entry, c=c : x.set(x.get()+c))
+		self.create_buttons(fram3, '//',
+		                    lambda x=self.entry : x.set(x.get()+'//'))
 
-	def create_buttons(self, str, commands, rows, columns, colspan=1):
-		tk.Button(self.root, text=str, height=2, width=6, command=commands)\
-			.grid(row=rows, column=columns, columnspan=colspan, padx=1, pady=1, sticky='wens')
+		fram4 = tk.Frame(master)
+		fram4.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH)
+		for c in '123*':
+			self.create_buttons(fram4, c, lambda x=self.entry, c=c : x.set(x.get()+c))
+		self.create_buttons(fram4, 'log10',
+		                    lambda x=self.entry : self.calc('log10(' + x.get() + ')'))
+
+		fram5 = tk.Frame(master)
+		fram5.pack(expand=tk.YES, side=tk.TOP, fill=tk.BOTH)
+		for c in '0.%/':
+			self.create_buttons(fram5, c, lambda x=self.entry, c=c : x.set(x.get()+c))
+		self.create_buttons(fram5, 'sqrt',
+		                    lambda x=self.entry: self.calc('sqrt(' + x.get() + ')'))
+
+	def create_buttons(self, frm, str, commands, width=6, rel=tk.RAISED):
+		tk.Button(frm, text=str, width=width, height=2, command=commands, relief=rel)\
+			.pack(expand=tk.YES, side=tk.LEFT, fill=tk.BOTH, padx=1, pady=1)
 
 	def create_menu(self, master):
 		menubar = tk.Menu(master)
@@ -125,7 +136,7 @@ class Calc(tk.Frame):
 			return 'Error'
 
 	def about(self):
-		tkbox.showinfo('calc', "river's calculator by grid")
+		tkbox.showinfo('calc', "river's calculator by pack!")
 
 	def clip_xcopy(self, str):
 		self.entry.set("")

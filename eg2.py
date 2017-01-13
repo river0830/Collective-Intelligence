@@ -54,6 +54,16 @@ def popupmenu(event):
 
 Entry.bind("<Button-3>", popupmenu)
 
+slangon = Label(root, text='你好,RIVER!', font='宋体 -12')
+slangon.pack()
+
+def slangon_set(ev=None):
+    slangon.config(font='宋体 -{0}'.format(int(scale.get())))
+
+scale = Scale(root, from_=12, to=36, length=240, orient=HORIZONTAL, command=slangon_set)
+scale.set(16)
+scale.pack()
+
 eg1 = eg()
 print("eg1 is {0}".format(eg1))
 print("eg1 add is {0}".format(eg1 + 'hello'))

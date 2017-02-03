@@ -16,10 +16,21 @@ class PlotE2(object):
 
 	def draw(self):
 		plt.figure(figsize=(10,6), dpi=80)
-		plt.subplot(1, 1, 1)
+		ax = plt.subplot(1, 1, 1)
 
-		plt.plot(self.x, self.c, color='blue', linewidth=1.0, linestyle='--')
-		plt.plot(self.x, self.s, color='green',  linewidth=1.0, linestyle='-')
+		ax.spines['right'].set_color('none')
+		ax.spines['top'].set_color('none')
+
+		ax.xaxis.set_ticks_position('bottom')
+		ax.spines['bottom'].set_position(('data', 0))
+
+		ax.yaxis.set_ticks_position('left')
+		ax.spines['left'].set_position(('data', 0))
+
+		plt.plot(self.x, self.c, color='blue', linewidth=1.0, linestyle='--',
+		         label='cos')
+		plt.plot(self.x, self.s, color='green',  linewidth=1.0, linestyle='-',
+		         label='sin')
 
 		xmax, xmin = self.x.max(), self.x.min()
 		ymax, ymin = self.c.max(), self.c.min()
@@ -32,8 +43,10 @@ class PlotE2(object):
 		plt.yticks(np.linspace(-1, 1, 5))
 
 		plt.title(u'PlotE2 学习', fontproperties=self.font)
-		plt.xlabel(u'x轴', fontproperties=self.font)
-		plt.ylabel(u'y轴', fontproperties=self.font)
+		#plt.xlabel(u'x轴', fontproperties=self.font)
+		#plt.ylabel(u'y轴', fontproperties=self.font)
+
+		plt.legend(loc='upper left')
 		plt.show()
 
 

@@ -20,9 +20,15 @@ class PlotE2(object):
 
 		plt.plot(self.x, self.c, color='blue', linewidth=1.0, linestyle='--')
 		plt.plot(self.x, self.s, color='green',  linewidth=1.0, linestyle='-')
-		plt.xlim(-4.0, 4.0)
-		plt.xticks(np.linspace(-4, 4, 9))
-		plt.ylim(-1.0, 1.0)
+
+		xmax, xmin = self.x.max(), self.x.min()
+		ymax, ymin = self.c.max(), self.c.min()
+		dx = (xmax - xmin)*0.1
+		dy = (ymax - ymin)*0.1
+
+		plt.xlim(xmin - dx, xmax + dx)
+		plt.xticks(np.linspace(-np.pi, np.pi, 5), [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
+		plt.ylim(ymin - dy, ymax + dy)
 		plt.yticks(np.linspace(-1, 1, 5))
 
 		plt.title(u'PlotE2 学习', fontproperties=self.font)

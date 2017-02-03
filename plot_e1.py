@@ -16,9 +16,9 @@ class show1(object):
 		z2 = np.cos(self.x ** 2)
 
 		plt.figure(figsize=(12, 8))
-		plt.plot(self.x, y,  color='red',   label='$sin(x)$')
-		plt.plot(self.x, z,  color='green', label='$cos(x)$')
-		plt.plot(self.x, z2, 'b--',  label='$cos(x^2)$')
+		plt.plot(self.x, y,  color='red',   label=r'$sin(x)$')
+		plt.plot(self.x, z,  color='green', label=r'$cos(x)$')
+		plt.plot(self.x, z2, 'b--',  label=r'$cos(x^2)$')
 
 		plt.title(u'大唐科技', fontproperties=font)
 		plt.xlabel(u'时间', fontproperties=font)

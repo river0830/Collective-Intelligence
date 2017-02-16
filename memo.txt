@@ -18,3 +18,11 @@ celery task queue
 duck typing
 " When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck."
 " In other words, don't check whether it IS-a duck: check whether it QUACKS-like-a duck, WALKS-like-a duck, etc, etc, depending on exactly what subset of duck-like behaviour you need to play your language-games with"
+
+python structure
+github 地址: https://github.com/facert/python-data-structure-cn
+gitbook 在线浏览: https://facert.gitbooks.io/python-data-structure-cn
+
+decorator
+http://www.jb51.net/article/63331.htm
+http://www.tuicool.com/articles/2maEVr

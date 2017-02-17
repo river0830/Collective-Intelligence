@@ -68,4 +68,20 @@ eg1 = eg()
 print("eg1 is {0}".format(eg1))
 print("eg1 add is {0}".format(eg1 + 'hello'))
 
+def f2(a, b):
+    t = [list() for i in range(b)]
+    for i, x in enumerate(a):
+        t[i%b].append(x)
+    return dict(zip(range(1, b+1), t))
+
+def f1(a, b):
+    r = {}
+    for i, x in enumerate(a):
+        r.setdefault(i%b + 1, []).append(x)
+    return r
+
+aa = ['1', '2', '3', '4', '5', '7']
+print("{0}".format(str(f1(aa, 12))))
+print("{0}".format(str(f2(aa, 12))))
+
 root.mainloop()

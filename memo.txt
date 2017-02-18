@@ -26,3 +26,7 @@ gitbook 在线浏览: https://facert.gitbooks.io/python-data-structure-cn
 decorator
 http://www.jb51.net/article/63331.htm
 http://www.tuicool.com/articles/2maEVr
+
+web
+http://blog.csdn.net/laughing2333/article/details/51288660
+http://www.genban.org/teach/teach-15355.html

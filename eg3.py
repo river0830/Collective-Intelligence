@@ -21,6 +21,14 @@ def log1(func):
 	decorator.__module__ = func.__module__
 	return decorator
 
+def log2(func):
+	'''log2 decorator'''
+	@functools.wraps(func)
+	def decorator(*args, **kwargs):
+		print('log decorator {0}'.format(func.__name__))
+		return func(*args, **kwargs)
+	return decorator
+
 @log
 def name():
 	'''name log decorator'''
@@ -28,8 +36,13 @@ def name():
 
 @log1
 def name1():
-	'''name log decorator'''
+	'''name1 log1 decorator'''
 	print('name1 showinfo {0}'.format(time.asctime()))
+
+@log2
+def name2():
+	'''name2 functools log decorator'''
+	print('name2 showinfo {0}'.format(time.asctime()))
 
 
 if __name__ == '__main__':
@@ -38,6 +51,9 @@ if __name__ == '__main__':
 
 	print('name and name1 name is <{0}><{1}>'.format(name.__name__, name1.__name__))
 	print('name and name1 doc  is <{0}><{1}>'.format(name.__doc__, name1.__doc__))
+	print('name2 doc and name is <{0}><{1}>'.format(name2.__doc__, name2.__name__))
 
 	name()
 	name1()
+	name2()
+

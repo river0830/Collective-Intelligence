@@ -6,28 +6,29 @@ import bottle
 
 from bottle import route, run, template, request, static_file, post
 
-@route('/login', method="GET")
-def login():
-	#return 'login showinfo {0}'.format(os.name)
-	#return \
-	'''
+'''
 	<form method="POST" action="/login">
 	用户名:<input name="username" type="text"/><br>
 	密码:  <input name="password" type="password"/><br>
 	<input value="登录" type="submit"/>
 	</form>
-	'''
-	return template('login', message='')
+'''
 
+@route('/login', method="GET")
+def login():
+	'''login page'''
+	return template('login', message='')
 
 #@route('/login', method='POST')
 @post('/login')
 def login_submit():
+	'''check login'''
 	name = request.forms.get("username")
 	pwd  = request.forms.get("password")
-
-	if pwd != '10086':
-		return template('login', message="密码输入错误")
+	#print("name={0},pwd={1}".format(name, pwd))
+	if not name or pwd != '10086':
+		m = u"密码输入错误"
+		return bottle.template('login', message=m)
 
 	return template('login_success', username=name, password=pwd)
 

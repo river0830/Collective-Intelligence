@@ -1,21 +1,33 @@
+<!DOCTYPE html>
 <html>
+<!--Head-->
+<head>
+    <meta charset="utf-8" />
+    <title>用户登陆</title>
+</head>
 <body>
 
     <h1> This is a login page </h1>
     <p> River 第一次bottle模版实例 </p>
     <hr />
 
-    <form action="/login" methon="post">
-        <b>用户名:</b> <input name="username" type="text"/>
-        </br>
-        <b>密码&#12288:</b> <input name="password" type="password" />
-        </br>
-        <input value="登录" type="submit"/></br>
-    </form>
+    <form action="" method="post">
+        <div class="loginbox-textbox">
+            <b>用户名:</b><input type="text" class="form-control" name="username" placeholder="帐号" />
+        </div>
+        <div class="loginbox-textbox">
+            <b>密码&#12288:</b><input type="password" class="form-control" name="password" placeholder="密码" />
+        </div>
 
-    %if message:
-        {{message}} </br>
-    %end
+        <div class="loginbox-submit">
+            <input type="submit" class="btn btn-primary btn-block" value="登陆">
+        </div>
+        % if message:
+        <div class="loginbox-signup">
+            <font color="red">{{message}}</font>
+        </div>
+        % end
+    </form>
 
 </body>
 </html>

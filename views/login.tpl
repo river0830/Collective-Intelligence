@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <!--Head-->
 <head>
@@ -12,22 +12,33 @@
     <hr />
 
     <form action="" method="post">
-        <div class="loginbox-textbox">
+        <div>
             <b>用户名:</b><input type="text" class="form-control" name="username" placeholder="帐号" />
         </div>
-        <div class="loginbox-textbox">
+        <div>
             <b>密码&#12288:</b><input type="password" class="form-control" name="password" placeholder="密码" />
         </div>
 
-        <div class="loginbox-submit">
+        <div>
             <input type="submit" class="btn btn-primary btn-block" value="登陆">
         </div>
         % if message:
-        <div class="loginbox-signup">
+        <div>
             <font color="red">{{message}}</font>
         </div>
         % end
     </form>
+
+    <p id = "hh"> This Script title is test JavaScript</p>
+
+    <script>
+        function my_funciton()
+        {
+            x = document.getElementById("hh");
+            x.style.color = "green";
+        }
+    </script>
+    <button type="button" onclick="my_funciton()"> JavaScriptTest </button>
 
 </body>
 </html>

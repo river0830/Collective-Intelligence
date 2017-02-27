@@ -25,7 +25,7 @@ def login_submit():
 	'''check login'''
 	name = request.forms.get("username")
 	pwd  = request.forms.get("password")
-	#print("name={0},pwd={1}".format(name, pwd))
+	print("name={0},pwd={1}".format(name, pwd))
 	if not name or pwd != '10086':
 		m = u"密码输入错误"
 		return bottle.template('login', message=m)

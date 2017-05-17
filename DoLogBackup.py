@@ -15,16 +15,12 @@ maxlog = 3
 tdelay = 24 * 3600
 
 def compare_log(x, y):
-    if os.name == "nt":
-        dir_x = CUR_DIR + "\\" + x
-        dir_y = CUR_DIR + "\\" + y
-    else:
-        dir_x = CUR_DIR + "/" + x
-        dir_y = CUR_DIR + "/" + y
-
-    if os.path.getmtime(dir_x) < os.path.getmtime(dir_y):
+    dir_x = os.path.join(CUR_DIR, x)
+    dir_y = os.path.join(CUR_DIR, y)
+    
+    if os.path.getmtime(dir_x) > os.path.getmtime(dir_y):
         return -1
-    elif os.path.getmtime(dir_x) > os.path.getmtime(dir_y):
+    elif os.path.getmtime(dir_x) < os.path.getmtime(dir_y):
         return 1
     else:
         return 0
@@ -44,13 +40,9 @@ def log_backup(dest, cur, tick):
             if len(dirs) > maxlog:
                 dirs.sort(compare_log)
                 for i in range(len(dirs) - maxlog):
-                    if os.name == "nt":
-                        logs = cur + "\\" + dirs[i + maxlog]
-                        dlogs = dest + "\\" + dirs[i + maxlog]
-                    else:
-                        logs = cur + "/" + dirs[i + maxlog]
-                        dlogs = dest + "/" + dirs[i + maxlog]
-                        
+                    logs  = os.path.join(cur, dirs[i+maxlog])
+                    dlogs = os.path.join(dest, dirs[i+maxlog])
+
                     #print("{0}-{1}".format(logs, dlogs))
                     try:
                         if bSDNormal and (not os.path.exists(dlogs)):

@@ -1,4 +1,4 @@
-http://blog.csdn.net/hitlion2008/article/details/9285785
+﻿http://blog.csdn.net/hitlion2008/article/details/9285785
 http://codingbat.com/python
 http://www.openbookproject.net/py4fun/
 
@@ -35,3 +35,5 @@ http://blog.csdn.net/yasenagat/article/details/7431038
 
 http://www.linuxyw.com/546.html
 http://w3school.com.cn/
+
+http://www.cnblogs.com/BigFishFly/p/6379980.html

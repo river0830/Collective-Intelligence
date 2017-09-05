@@ -1,6 +1,7 @@
 #coding:utf8
 
-import sys
+import sys, timeit
+import my_tick
 
 '''dp by river'''
 def bag_user():
@@ -61,6 +62,12 @@ def bag_zero_python():
     res = dp(jobs, cap)
     print max((total - res), res)*1024
 
+    print("dp-timer{0}".format(my_tick.timer(dp, jobs, cap, _reps=10)))
+    print("dppro-timer{0}".format(my_tick.timer(dp_pro, jobs, cap, _reps=10)))
+
+    print("timeit dp-timer{0}".format(timeit.timeit("dp(jobs, cap)", number=10)))
+    print("timeit dppro-timer{0}".format(timeit.timeit("dp_pro(jobs, cap)", number=10)))
+
 """
 @author: Aprilvkuo
 @file: netbeans.py
@@ -105,5 +112,5 @@ def dp_xiaohuan():
     print (total - (C-min(dp)))*1024
 
 if __name__ == "__main__":
-    bag_user()
+    #bag_user()
     bag_zero_python()

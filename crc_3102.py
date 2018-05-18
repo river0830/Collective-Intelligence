@@ -1,8 +1,14 @@
 #coding:utf-8
 #crc16 ccitt ccitt_1 for 3102 weight system
 
-import Tkinter as tk
-import ttk
+import sys
+
+if sys.version_info.major == 2:
+    import Tkinter as tk
+    import ttk
+else:
+    import tkinter as tk
+    import tkinter.ttk as ttk
 import binascii
 
 import river
@@ -149,3 +155,4 @@ class Gui(tk.Frame):
 
 if __name__ == '__main__':
 	Gui(tk.Tk()).mainloop()
+	input();

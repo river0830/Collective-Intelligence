@@ -11,7 +11,7 @@ class my_property(object):
 		self.func = func
 
 	def __get__(self, instance, owner):
-		print instance
+		print(instance)
 		if instance is None: return self
 
 		res = instance.__dict__[self.func.__name__] = self.func(instance)
@@ -34,12 +34,12 @@ class Score(object):
 
 	@my_property
 	def age(self):
-		print '{0} age'.format('my_property')
+		print('{0} age'.format('my_property'))
 		return self._score + 5
 
 	@property
 	def bage(self):
-		print '{0} bage'.format('property')
+		print('{0} bage'.format('property'))
 		return self._score + 4
 
 
@@ -97,6 +97,30 @@ def name2():
 	'''name2 functools log decorator'''
 	print('name2 showinfo {0}'.format(time.asctime()))
 
+#https://blog.csdn.net/jsc723/article/details/64439422?winzoom=1
+def deepcopy_naive(sth):
+	if isinstance(sth, list):
+		return [deepcopy_naive(e) for e in sth]
+	return sth
+
+def deepcopy(sth):
+	dic = {}
+	def helper(th):
+		if isinstance(th, list):
+			if id(th) in dic.keys():
+				return dic[id(th)]
+			tmp = []
+			dic[id(th)] = tmp
+			for e in th:
+				tmp.append(helper(e))
+			return tmp
+		return th
+	return helper(sth)
+
+def plat(ch,n):return''if ~n else ' '*(n-1)+ ch+ch[::-1][1:]+'\n'+plat(ch+chr(ord(ch[-1])+1),n-1)
+
+def f(n):[ ([print('{}*{}={}'.format(x,y,x*y),end = ' ')for x in range(1,y+1)])for y in range(1,n+1)]
+def f1(n,k=1): k==n+1 or (print(' '.join('{}*{}={}'.format(x,k,x*k) for x in range(1,k+1))),f1(n,k+1))
 
 if __name__ == '__main__':
 	print('log and log1 name is <{0}><{1}>'.format(log.__name__, log1.__name__))
@@ -112,11 +136,21 @@ if __name__ == '__main__':
 	login('admin')
 
 	st = Score()
-	print st.age
-	print st.age
+	print(st.age)
+	print(st.age)
 
-	print st.bage
-	print st.bage
+	print(st.bage)
+	print(st.bage)
+
+	a = [1, 0]
+	a[1] = a
+	b = deepcopy(a)
+	print(a)
+	print(b)
+
+	print ('\n'.join([''.join(['--love'[(x-y)%6] if (x*0.04)**2+((y*0.1) - ((x*0.04)**2)**(1/3))**2 < 1 else ' ' for x in range(-30,30,1) ]) for y in range(15,-15,-1)]))
+	f(9)
+	f1(9)
 
 
 
